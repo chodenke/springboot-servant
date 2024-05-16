@@ -23,13 +23,36 @@
 hs_err_pid*
 replay_pid*
 
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
 # Java IDEs
 .idea/
+*.iws
+*.iml
+*.ipr
 .gradle/
 build/
-.classpath
-.project
 .settings/
 bin/
 lib/
 out/
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+!**/src/main/**/build/
+!**/src/test/**/build/
+.vscode/
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
