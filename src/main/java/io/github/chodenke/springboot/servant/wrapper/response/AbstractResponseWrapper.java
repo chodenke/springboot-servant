@@ -59,14 +59,27 @@ public abstract sealed class AbstractResponseWrapper permits FailedResponseWrapp
     }
 
     // ========================= getter begin =========================
+
+    /**
+     * isSuccess
+     * @return boolean
+     */
     public boolean isSuccess() {
         return success;
     }
 
+    /**
+     * getCode
+     * @return code string
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * getMsg
+     * @return message string
+     */
     public String getMsg() {
         return msg;
     }

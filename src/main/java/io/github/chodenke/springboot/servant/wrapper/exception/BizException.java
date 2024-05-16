@@ -31,7 +31,10 @@ public class BizException extends RuntimeException {
         this.code = failureEnum.getIntegratedCode();
     }
 
-    /** code 属性的 getter */
+    /**
+     * code 属性的 getter
+     * @return code
+     */
     public String getCode() {
         return code;
     }

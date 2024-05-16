@@ -67,7 +67,7 @@ public class RegexValidator {
     /** 常见图片文件后缀名 */
     private final static Pattern IMAGE_FILE_SUFFIX = Pattern.compile(RegexPool.IMAGE_FILE_SUFFIX);
 
-    /** 安全的文本，文本中禁用下列符号 <>(){}%$;:'" */
+    /** 安全的文本，文本中禁用下列符号 &lt;&gt;(){}%$;:&#39;&quot; */
     private final static Pattern SECURE_TEXT = Pattern.compile(RegexPool.SECURE_TEXT);
 
     /** MD5算法计算得到的32位hash值 */
@@ -260,7 +260,7 @@ public class RegexValidator {
     }
 
     /**
-     * 验证是否为安全的文本(文本中禁用下列符号 <>(){}%$;:'")
+     * 验证是否为安全的文本(文本中禁用下列符号 &lt;&gt;(){}%$;:&#39;&quot;)
      *
      * @param value 值
      * @return 是否为安全的文本
