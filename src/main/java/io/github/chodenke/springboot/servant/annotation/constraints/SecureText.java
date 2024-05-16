@@ -18,7 +18,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * <h2>校验字符串内容为安全的文本</h2>
  * <h3>note:</h3>
  * <ul>
- *     <li>文本中禁用下列符号 <>(){}%$;:'"</li>
+ *     <li>文本中禁用一些特殊符号</li>
  *     <li>接收 CharSequence</li>
  *     <li>空元素被认为是有效的</li>
  * </ul>
