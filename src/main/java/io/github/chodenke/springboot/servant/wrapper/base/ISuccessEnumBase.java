@@ -17,6 +17,6 @@ public interface ISuccessEnumBase extends IResultEnumBase {
      * @return 完整的成功返回结果编码
      */
     default String getIntegratedCode() {
-        return "SUC" + ":" + getExSegmentCode() + ":" + name();
+        return "SUC" + ":" + getResponseSegmentCode() + ":" + name();
     }
 }

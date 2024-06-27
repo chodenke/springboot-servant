@@ -19,7 +19,7 @@ public interface IFailureEnumBase extends IResultEnumBase {
      * @return 完整的成功返回结果编码
      */
     default String getIntegratedCode() {
-        return "ERR" + ":" + getExSegmentCode() + ":" + name();
+        return "ERR" + ":" + getResponseSegmentCode() + ":" + name();
     }
 
     /**

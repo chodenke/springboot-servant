@@ -1,6 +1,6 @@
 package io.github.chodenke.springboot.servant.wrapper.base;
 
-import io.github.chodenke.springboot.servant.annotation.common.ExSegment;
+import io.github.chodenke.springboot.servant.annotation.common.ResponseSegment;
 
 /**
  * <h2>返回结果枚举的基础接口</h2>
@@ -27,14 +27,14 @@ public interface IResultEnumBase {
     String getDesc();
 
     /**
-     * 获取异常分担名称
+     * 获取返回信息分段
      * <br/>
-     * 这里进行了默认实现，从实现该接口的枚举类中获取由 @ExSegment注解 配置的异常分段信息，从中提取分段名称。
-     * 如果实现该接口的枚举类并没有配置 @ExSegment注解，则认为是 COMMON 分段。
+     * 这里进行了默认实现，从实现该接口的枚举类中获取由 @ResponseSegment注解 配置的返回信息分段值。
+     * 如果实现该接口的枚举类并没有配置 @ResponseSegment 注解，则认为是 COMMON 分段。
      */
-    default String getExSegmentCode() {
-        if (getClass().isAnnotationPresent(ExSegment.class)) {
-            return getClass().getAnnotation(ExSegment.class).value();
+    default String getResponseSegmentCode() {
+        if (getClass().isAnnotationPresent(ResponseSegment.class)) {
+            return getClass().getAnnotation(ResponseSegment.class).value();
         } else {
             return "COMMON";
         }
