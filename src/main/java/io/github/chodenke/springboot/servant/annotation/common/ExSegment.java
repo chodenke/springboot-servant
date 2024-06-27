@@ -3,10 +3,10 @@ package io.github.chodenke.springboot.servant.annotation.common;
 import java.lang.annotation.*;
 
 /**
- * <h2>模块注解</h2>
+ * <h2>异常分段注解</h2>
  * <h3>note:</h3>
  * <ul>
- *     <li>用来在类上注解该类属于哪个业务模块，方便统一管理模块编码 主要用于各个模块的 FailureEnum 及 SuccessEnum 等</li>
+ *     <li>用来在异常枚举（各个 FailureEnum 及 SuccessEnum）上注解该异常枚举属于哪个分段，使生成的异常code有分段区分</li>
  * </ul>
  *
  * <p>datetime: 2024/5/15 10:23</p>
@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface Modular {
+public @interface ExSegment {
 
     String value() default "COMMON";
 

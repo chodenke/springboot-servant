@@ -14,12 +14,12 @@ public interface IFailureEnumBase extends IResultEnumBase {
 
     /**
      * 获取完整的失败返回结果编码
-     * note: 这里进行了默认实现，构成为 "SUC:" + 模块名称 + ":返回结果枚举名称"
+     * note: 这里进行了默认实现，构成为 "SUC:" + 异常分段名称 + ":返回结果枚举名称"
      *
      * @return 完整的成功返回结果编码
      */
     default String getIntegratedCode() {
-        return "ERR" + ":" + getModularCode() + ":" + name();
+        return "ERR" + ":" + getExSegmentCode() + ":" + name();
     }
 
     /**
