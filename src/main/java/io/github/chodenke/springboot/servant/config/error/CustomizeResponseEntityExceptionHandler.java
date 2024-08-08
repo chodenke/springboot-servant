@@ -2,6 +2,7 @@ package io.github.chodenke.springboot.servant.config.error;
 
 import io.github.chodenke.springboot.servant.wrapper.exception.BizException;
 import io.github.chodenke.springboot.servant.wrapper.response.FailedResponseWrapper;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,8 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -30,7 +33,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    /** 日志记录器 */
+    /**
+     * 日志记录器
+     */
     private final Log logger = LogFactory.getLog(getClass());
 
     /**
@@ -46,8 +51,13 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
             HttpStatus status = HttpStatus.OK;
             return handleBizException((BizException) ex, headers, status);
         } else if (ex instanceof ConstraintViolationException) {
-            HttpStatus status = HttpStatus.BAD_REQUEST;
-            return handleConstraintViolationException((ConstraintViolationException) ex, headers, status, request);
+            for (ConstraintViolation<?> constraintViolation : ((ConstraintViolationException) ex).getConstraintViolations()) {
+                if (constraintViolation.getRootBeanClass().isAnnotationPresent(Controller.class)
+                        || constraintViolation.getRootBeanClass().isAnnotationPresent(RestController.class)) {
+                    HttpStatus status = HttpStatus.BAD_REQUEST;
+                    return handleConstraintViolationException((ConstraintViolationException) ex, headers, status, request);
+                }
+            }
         }
         throw ex;
     }
@@ -84,20 +94,20 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
      * note: 在父类中，handleException(Exception ex, WebRequest request) 方法捕捉到的异常经过初步处理后最终都交由了这个方法处理，
      * 默认的响应实体实例中 body 是空的，本项目重写了这个方法，填充一下 body，记录了一下日志
      *
-     * @param ex      异常实例
-     * @param body    响应实体的 body
-     * @param headers 响应头
-     * @param statusCode  响应的 http 状态码封装实例
-     * @param request 请求
+     * @param ex         异常实例
+     * @param body       响应实体的 body
+     * @param headers    响应头
+     * @param statusCode 响应的 http 状态码封装实例
+     * @param request    请求
      * @return 响应实体实例
      */
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
-            logger.debug("CustomizeResponseEntityExceptionHandler handle exception:" + ex);
-            if (body == null) {
-                body = new FailedResponseWrapper(String.valueOf(statusCode.value()), HttpStatus.valueOf(statusCode.value()).getReasonPhrase());
-            }
-            logger.debug("The response body to be returned in the CustomizeResponseEntityExceptionHandler is " + body);
+        logger.debug("CustomizeResponseEntityExceptionHandler handle exception:" + ex);
+        if (body == null) {
+            body = new FailedResponseWrapper(String.valueOf(statusCode.value()), HttpStatus.valueOf(statusCode.value()).getReasonPhrase());
+        }
+        logger.debug("The response body to be returned in the CustomizeResponseEntityExceptionHandler is " + body);
         return super.handleExceptionInternal(ex, body, headers, statusCode, request);
     }
 }
