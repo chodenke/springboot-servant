@@ -6,10 +6,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -106,7 +103,10 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
         logger.debug("CustomizeResponseEntityExceptionHandler handle exception:" + ex);
         if (body == null) {
             body = new FailedResponseWrapper(String.valueOf(statusCode.value()), HttpStatus.valueOf(statusCode.value()).getReasonPhrase());
+        } else if (body instanceof ProblemDetail originalBody) {
+            body = new FailedResponseWrapper(String.valueOf(statusCode.value()), originalBody.getTitle());
         }
+
         logger.debug("The response body to be returned in the CustomizeResponseEntityExceptionHandler is " + body);
         return super.handleExceptionInternal(ex, body, headers, statusCode, request);
     }
