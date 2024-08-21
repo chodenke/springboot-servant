@@ -64,7 +64,7 @@ public class JsonUtil {
     }
 
     /**
-     * 封装 jackson ObjectMapper 实例的 readValue(String content, Class<T> valueType) 方法
+     * 封装 jackson ObjectMapper 实例的 readValue(String content, Class&lt;T&gt; valueType) 方法
      *
      * @param content   json 字符串内容
      * @param valueType 要转成的实例类型
@@ -89,7 +89,7 @@ public class JsonUtil {
     }
 
     /**
-     * 封装 jackson ObjectMapper 实例的 readValue(Reader src, Class<T> valueType) 方法
+     * 封装 jackson ObjectMapper 实例的 readValue(Reader src, Class&lt;T&gt; valueType) 方法
      *
      * @param reader    输入流实例
      * @param valueType 要转成的实例类型
