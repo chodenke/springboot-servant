@@ -56,7 +56,7 @@ public class RegexValidator {
     private final static Pattern CHINESE_BANK_ACCOUNT = Pattern.compile(RegexPool.CHINESE_BANK_ACCOUNT);
 
     /** 车架号 */
-    private final static Pattern CAR_VIN = Pattern.compile(RegexPool.CAR_VIN);
+    private final static Pattern VEHICLE_VIN = Pattern.compile(RegexPool.VEHICLE_VIN);
 
     /** 正整数，不含0 */
     private final static Pattern POSITIVE = Pattern.compile(RegexPool.POSITIVE);
@@ -226,7 +226,7 @@ public class RegexValidator {
      * @return 是否为车架号
      */
     public static boolean isCarVin(CharSequence value) {
-        return isMatchRegex(CAR_VIN, value);
+        return isMatchRegex(VEHICLE_VIN, value);
     }
 
     /**

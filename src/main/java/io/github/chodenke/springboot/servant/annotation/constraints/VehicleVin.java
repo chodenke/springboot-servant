@@ -32,8 +32,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @SupportedValidationTarget(ValidationTarget.ANNOTATED_ELEMENT)
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
-@Pattern(regexp = RegexPool.CAR_VIN)
-public @interface CarVin {
+@Pattern(regexp = RegexPool.VEHICLE_VIN)
+public @interface VehicleVin {
 
     /**
      * message参数，用以配置校验不通过时的提示信息

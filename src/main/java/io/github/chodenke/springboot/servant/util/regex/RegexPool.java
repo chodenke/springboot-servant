@@ -66,7 +66,7 @@ public final class RegexPool {
     public static final String CHINESE_BANK_ACCOUNT = "^[1-9]\\d{9,29}$";
 
     /** 车架号 */
-    public static final String CAR_VIN = "^[A-HJ-NPR-Z0-9]{8}[X0-9]([A-HJ-NPR-Z0-9]{3}\\d{5}|[A-HJ-NPR-Z0-9]{5}\\d{3})$";
+    public static final String VEHICLE_VIN = "^[A-HJ-NPR-Z0-9]{8}[X0-9]([A-HJ-NPR-Z0-9]{3}\\d{5}|[A-HJ-NPR-Z0-9]{5}\\d{3})$";
 
     /** 正整数，不含0 */
     public static final String POSITIVE = "^([1-9][0-9]*)$";
