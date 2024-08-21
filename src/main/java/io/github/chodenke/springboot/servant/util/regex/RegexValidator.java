@@ -58,6 +58,9 @@ public class RegexValidator {
     /** 车架号 */
     private final static Pattern VEHICLE_VIN = Pattern.compile(RegexPool.VEHICLE_VIN);
 
+    /** 中国民族 */
+    private final static Pattern CHINESE_NATION = Pattern.compile(RegexPool.CHINESE_NATION);
+
     /** 正整数，不含0 */
     private final static Pattern POSITIVE = Pattern.compile(RegexPool.POSITIVE);
 
@@ -227,6 +230,16 @@ public class RegexValidator {
      */
     public static boolean isCarVin(CharSequence value) {
         return isMatchRegex(VEHICLE_VIN, value);
+    }
+
+    /**
+     * 验证是否为中国民族
+     *
+     * @param value 值
+     * @return 是否为中国民族
+     */
+    public static boolean isChineseNation(CharSequence value) {
+        return isMatchRegex(CHINESE_NATION, value);
     }
 
     /**
