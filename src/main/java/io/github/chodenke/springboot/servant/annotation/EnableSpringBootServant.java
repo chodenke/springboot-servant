@@ -2,6 +2,7 @@ package io.github.chodenke.springboot.servant.annotation;
 
 import io.github.chodenke.springboot.servant.config.error.CustomizeErrorAttributes;
 import io.github.chodenke.springboot.servant.config.error.CustomizeResponseEntityExceptionHandler;
+import io.github.chodenke.springboot.servant.util.json.JsonUtil;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -22,6 +23,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({CustomizeErrorAttributes.class, CustomizeResponseEntityExceptionHandler.class})
+@Import({CustomizeErrorAttributes.class, CustomizeResponseEntityExceptionHandler.class, JsonUtil.class})
 public @interface EnableSpringBootServant {
 }
