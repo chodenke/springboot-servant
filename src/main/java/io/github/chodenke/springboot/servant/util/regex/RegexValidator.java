@@ -228,7 +228,7 @@ public class RegexValidator {
      * @param value 值
      * @return 是否为车架号
      */
-    public static boolean isCarVin(CharSequence value) {
+    public static boolean isVehicleVin(CharSequence value) {
         return isMatchRegex(VEHICLE_VIN, value);
     }
 
