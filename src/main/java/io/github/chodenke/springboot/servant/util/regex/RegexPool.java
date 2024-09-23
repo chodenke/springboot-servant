@@ -86,6 +86,9 @@ public final class RegexPool {
     /** MD5算法计算得到的32位hash值 */
     public static final String MD5_HASH = "[0-9a-f]{32}";
 
+    /** 经过 bcrypt 加密的密码哈希值 */
+    public static final String BCRYPT_HASH = "^\\$2[abx]\\$10\\$.{53}$";
+
     /** 21位NanoId */
     public static final String NANO_ID = "[0-9a-zA-Z_-]{21}";
 

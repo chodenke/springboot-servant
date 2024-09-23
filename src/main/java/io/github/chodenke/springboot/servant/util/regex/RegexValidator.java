@@ -76,6 +76,9 @@ public class RegexValidator {
     /** MD5算法计算得到的32位hash值 */
     private final static Pattern MD5_HASH = Pattern.compile(RegexPool.MD5_HASH);
 
+    /** 经过 bcrypt 加密的密码哈希值 */
+    private final static Pattern BCRYPT_HASH = Pattern.compile(RegexPool.BCRYPT_HASH);
+
     /** 21位NanoId */
     private final static Pattern NANO_ID = Pattern.compile(RegexPool.NANO_ID);
 
@@ -290,6 +293,16 @@ public class RegexValidator {
      */
     public static boolean isMd5Hash(CharSequence value) {
         return isMatchRegex(MD5_HASH, value);
+    }
+
+    /**
+     * 验证是否为经过 bcrypt 加密的密码哈希值
+     *
+     * @param value 值
+     * @return 是否为经过 bcrypt 加密的密码哈希值
+     */
+    public static boolean isBcryptHash(CharSequence value) {
+        return isMatchRegex(BCRYPT_HASH, value);
     }
 
     /**
