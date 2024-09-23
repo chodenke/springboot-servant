@@ -80,8 +80,8 @@ public final class RegexPool {
     /** 常见图片文件后缀名 */
     public static final String IMAGE_FILE_SUFFIX = "(jpeg)|(jpg)|(png)|(gif)";
 
-    /** 安全的文本，文本中禁用下列符号 &lt;&gt;(){}%$;:&#39;&quot; */
-    public static final String SECURE_TEXT = "^[^<>(){}%$;:'\"]*$";
+    /** 安全的文本，文本中禁用下列符号 &lt;&gt;(){}%$;:&#39;&quot;等等 */
+    public static final String SECURE_TEXT = "^[^<>()\\[\\]{}!$%^&*;.:'\"?\\\\]*$";
 
     /** MD5算法计算得到的32位hash值 */
     public static final String MD5_HASH = "[0-9a-f]{32}";
