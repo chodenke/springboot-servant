@@ -11,7 +11,7 @@ import java.util.Map;
  * @author chodenke
  * @since JDK 17
  */
-public abstract sealed class AbstractResponseWrapper permits FailedResponseWrapper, SucceededResponseWrapper {
+public abstract sealed class AbstractResponseWrapper<T> permits R {
 
     /** 是否成功，成功为 true */
     private final boolean success;

@@ -5,16 +5,16 @@ import io.github.chodenke.springboot.servant.wrapper.exception.BizException;
 
 /**
  * <h2>失败返回结果包装</h2>
- *
- * <p>datetime: 2024/5/15 10:10</p>
+ * <h3>note:</h3>
+ * <ul>
+ *     <li>暂无</li>
+ * </ul>
+ * <p>datetime: 2024/10/8 10:24</p>
  *
  * @author chodenke
  * @since JDK 17
  */
-public sealed class FailedResponseWrapper<T> extends R<T> permits ER {
-
-    /** 默认的失败返回结果描述信息 */
-    private static final String DEFAULT_FAILURE_MSG = "execution failed";
+public final class ER<T> extends FailedResponseWrapper<T> {
 
     /**
      * 构造方法，由 失败返回结果编码 和 失败返回结果描述信息 构造一个失败返回结果的包装
@@ -22,8 +22,8 @@ public sealed class FailedResponseWrapper<T> extends R<T> permits ER {
      * @param code 败返回结果编码
      * @param msg  失败返回结果描述信息
      */
-    public FailedResponseWrapper(String code, String msg) {
-        super(false, code, msg);
+    public ER(String code, String msg) {
+        super(code, msg);
     }
 
     /**
@@ -31,8 +31,8 @@ public sealed class FailedResponseWrapper<T> extends R<T> permits ER {
      *
      * @param code 失败返回结果编码
      */
-    public FailedResponseWrapper(String code) {
-        this(code, DEFAULT_FAILURE_MSG);
+    public ER(String code) {
+        super(code);
     }
 
     /**
@@ -40,8 +40,8 @@ public sealed class FailedResponseWrapper<T> extends R<T> permits ER {
      *
      * @param failureEnumBase 失败返回结果枚举
      */
-    public FailedResponseWrapper(IFailureEnumBase failureEnumBase) {
-        this(failureEnumBase.getIntegratedCode(), failureEnumBase.getDesc());
+    public ER(IFailureEnumBase failureEnumBase) {
+        super(failureEnumBase);
     }
 
     /**
@@ -49,7 +49,8 @@ public sealed class FailedResponseWrapper<T> extends R<T> permits ER {
      *
      * @param bizeException 业务异常
      */
-    public FailedResponseWrapper(BizException bizeException) {
-        this(bizeException.getCode(), bizeException.getMessage());
+    public ER(BizException bizeException) {
+        super(bizeException);
     }
+
 }

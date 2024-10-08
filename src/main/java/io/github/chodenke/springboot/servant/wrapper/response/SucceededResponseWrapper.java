@@ -10,7 +10,7 @@ import io.github.chodenke.springboot.servant.wrapper.base.ISuccessEnumBase;
  * @author chodenke
  * @since JDK 17
  */
-public sealed class SucceededResponseWrapper<T> extends AbstractResponseWrapper permits R {
+public sealed class SucceededResponseWrapper<T> extends R<T> permits SR {
 
     /** 默认的成功返回结果描述信息 */
     protected static final String DEFAULT_SUCCESS_MSG = "execution succeeded";
